@@ -1,0 +1,7 @@
+[15:15:06] INFO === Config b — + Mixup alpha=0.2 ===
+[15:15:06] INFO Schedule: stage1=10 epochs @ lr=0.001, stage2=15 epochs @ lr=0.0001, warmup=2
+[15:15:06] INFO GPU: {'backend': 'torch', 'gpus': ['NVIDIA GeForce RTX 5080'], 'device': 'GPU', 'keras_version': '3.14.0', 'torch_version': '2.11.0+cu128', 'cuda': '12.8', 'compute_capability': [12, 0]}
+[15:15:10] INFO Stage 1 — backbone frozen, 5124 trainable params
+[17:57:11] INFO Stage 1 best val_acc=0.6744, Stage 2 best=0.9986
+[17:57:11] INFO Evaluating on clean test set...
+[17:57:44] INFO Test acc=0.9991  macroF1=0.9991

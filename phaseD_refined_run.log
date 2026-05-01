@@ -1,0 +1,41 @@
+[12:38:36] INFO Subsampled to frac=0.05 -> train=1540 val=330 test=330
+[12:38:36] INFO 
+>>> Running config a
+[12:39:27] ERROR Config a failed: Classification metrics can't handle a mix of multilabel-indicator and multiclass targets
+Traceback (most recent call last):
+  File "C:\Users\miaot\Github\Project_DeepLearningClass\src\refined_train.py", line 290, in main
+    res = _train_one_config(c, train_df, val_df, test_df,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\miaot\Github\Project_DeepLearningClass\src\refined_train.py", line 198, in _train_one_config
+    metrics = evaluate_and_save(model, test_ds, model_name=model_name,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\miaot\Github\Project_DeepLearningClass\src\training.py", line 309, in evaluate_and_save
+    "accuracy": float(accuracy_score(y_true, y_pred)),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\miaot\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\utils\_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\miaot\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\metrics\_classification.py", line 411, in accuracy_score
+    y_type, y_true, y_pred, sample_weight = _check_targets(
+                                            ^^^^^^^^^^^^^^^
+  File "C:\Users\miaot\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\metrics\_classification.py", line 127, in _check_targets
+    raise ValueError(
+ValueError: Classification metrics can't handle a mix of multilabel-indicator and multiclass targets
+[12:39:27] INFO Phase D summary saved to C:\Users\miaot\Github\Project_DeepLearningClass\outputs\reports\phaseD_summary.json
+[12:39:45] INFO Subsampled to frac=0.05 -> train=1540 val=330 test=330
+[12:39:45] INFO 
+>>> Running config a
+[12:40:37] INFO Config a done: {'config': 'a', 'stage1_seconds': 22.8, 'stage2_seconds': 23.0, 'stage1_best_val_accuracy': 0.4060606062412262, 'stage2_best_val_accuracy': 0.5121212005615234, 'test_accuracy': 0.5121212121212121, 'macro_f1': 0.43796533680251204}
+[12:40:37] INFO Phase D summary saved to C:\Users\miaot\Github\Project_DeepLearningClass\outputs\reports\phaseD_summary.json
+[12:41:28] INFO 
+>>> Running config a
+[15:14:56] INFO Config a done: {'config': 'a', 'stage1_seconds': 3050.4, 'stage2_seconds': 6118.3, 'stage1_best_val_accuracy': 0.6800000071525574, 'stage2_best_val_accuracy': 0.9987878799438477, 'test_accuracy': 0.9987878787878788, 'macro_f1': 0.9988749113236022}
+[15:14:56] INFO Phase D summary saved to C:\Users\miaot\Github\Project_DeepLearningClass\outputs\reports\phaseD_summary.json
+[15:14:59] INFO 
+>>> Running config b
+[17:57:44] INFO Config b done: {'config': 'b', 'stage1_seconds': 3739.5, 'stage2_seconds': 5981.1, 'stage1_best_val_accuracy': 0.6743939518928528, 'stage2_best_val_accuracy': 0.9986363649368286, 'test_accuracy': 0.9990909090909091, 'macro_f1': 0.9991267720362873}
+[17:57:44] INFO Phase D summary saved to C:\Users\miaot\Github\Project_DeepLearningClass\outputs\reports\phaseD_summary.json
+[17:57:48] INFO 
+>>> Running config c
+[20:34:05] INFO Config c done: {'config': 'c', 'stage1_seconds': 3246.4, 'stage2_seconds': 5854.7, 'stage1_best_val_accuracy': 0.6760606169700623, 'stage2_best_val_accuracy': 0.9989393949508667, 'test_accuracy': 0.9984848484848485, 'macro_f1': 0.998559661376686}
+[20:34:05] INFO Phase D summary saved to C:\Users\miaot\Github\Project_DeepLearningClass\outputs\reports\phaseD_summary.json

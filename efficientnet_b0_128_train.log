@@ -1,0 +1,7 @@
+[20:50:33] INFO === Reviewer-requested ablation: EfficientNet-B0 @ 128x128, recipe=a ===
+[20:50:33] INFO GPU: {'backend': 'torch', 'gpus': ['NVIDIA GeForce RTX 5080'], 'device': 'GPU', 'keras_version': '3.14.0', 'torch_version': '2.11.0+cu128', 'cuda': '12.8', 'compute_capability': [12, 0]}
+[20:50:35] INFO Splits: train=30800 val=6600 test=6600
+[20:50:36] INFO Stage 1 — params=4054695
+[23:28:16] INFO Stage 1 best val_acc=0.6161, Stage 2 best=0.9935
+[23:29:03] INFO Test acc=0.9942  macroF1=0.9944
+[23:29:03] INFO Saved summary: C:\Users\miaot\Github\Project_DeepLearningClass\outputs\reports\effnet_128_ablation_summary.json
