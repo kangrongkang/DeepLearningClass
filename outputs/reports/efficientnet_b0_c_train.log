@@ -1,0 +1,10 @@
+[17:57:54] INFO === Config c — + SWA last 25% epochs + TTA at inference ===
+[17:57:54] INFO Schedule: stage1=10 epochs @ lr=0.001, stage2=15 epochs @ lr=0.0001, warmup=2
+[17:57:54] INFO GPU: {'backend': 'torch', 'gpus': ['NVIDIA GeForce RTX 5080'], 'device': 'GPU', 'keras_version': '3.14.0', 'torch_version': '2.11.0+cu128', 'cuda': '12.8', 'compute_capability': [12, 0]}
+[17:57:58] INFO Stage 1 — backbone frozen, 5124 trainable params
+[18:52:05] INFO Stage 2 — SWA starting at epoch 11 (=75% of 15)
+[20:29:39] INFO Stage 1 best val_acc=0.6761, Stage 2 best=0.9989
+[20:29:39] INFO Evaluating on clean test set...
+[20:30:05] INFO Test acc=0.9985  macroF1=0.9986
+[20:30:05] INFO Running TTA inference...
+[20:34:05] INFO TTA test acc=0.9992  macroF1=0.9993

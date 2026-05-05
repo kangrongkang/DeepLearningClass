@@ -1,0 +1,103 @@
+[2026-04-30 12:41:27] === REFINED TRAINING RUN START ===
+[2026-04-30 12:41:27] GPU info:
+name, memory.used [MiB], memory.total [MiB]
+NVIDIA GeForce RTX 5080, 2186 MiB, 16303 MiB
+[2026-04-30 12:41:27] >>> running config a
+Epoch 6/15
+963/963 - 447s - 465ms/step - accuracy: 0.9893 - loss: 0.0313 - val_accuracy: 0.9926 - val_loss: 0.0201 - learning_rate: 7.1977e-05
+Epoch 7/15
+963/963 - 426s - 442ms/step - accuracy: 0.9919 - loss: 0.0254 - val_accuracy: 0.9950 - val_loss: 0.0154 - learning_rate: 6.1515e-05
+Epoch 8/15
+963/963 - 435s - 452ms/step - accuracy: 0.9934 - loss: 0.0187 - val_accuracy: 0.9942 - val_loss: 0.0142 - learning_rate: 5.0500e-05
+Epoch 9/15
+963/963 - 326s - 338ms/step - accuracy: 0.9946 - loss: 0.0151 - val_accuracy: 0.9979 - val_loss: 0.0076 - learning_rate: 3.9485e-05
+Epoch 10/15
+963/963 - 330s - 342ms/step - accuracy: 0.9972 - loss: 0.0096 - val_accuracy: 0.9980 - val_loss: 0.0053 - learning_rate: 2.9023e-05
+Epoch 11/15
+963/963 - 423s - 439ms/step - accuracy: 0.9976 - loss: 0.0082 - val_accuracy: 0.9983 - val_loss: 0.0047 - learning_rate: 1.9637e-05
+Epoch 12/15
+963/963 - 291s - 302ms/step - accuracy: 0.9982 - loss: 0.0066 - val_accuracy: 0.9988 - val_loss: 0.0034 - learning_rate: 1.1799e-05
+Epoch 13/15
+963/963 - 334s - 347ms/step - accuracy: 0.9981 - loss: 0.0062 - val_accuracy: 0.9985 - val_loss: 0.0034 - learning_rate: 5.9020e-06
+Epoch 14/15
+963/963 - 393s - 408ms/step - accuracy: 0.9985 - loss: 0.0055 - val_accuracy: 0.9988 - val_loss: 0.0033 - learning_rate: 2.2411e-06
+Epoch 15/15
+963/963 - 480s - 499ms/step - accuracy: 0.9984 - loss: 0.0056 - val_accuracy: 0.9988 - val_loss: 0.0032 - learning_rate: 1.0000e-06
+Restoring model weights from the end of the best epoch: 12.
+[15:14:21] INFO Stage 1 best val_acc=0.6800, Stage 2 best=0.9988
+[15:14:21] INFO Evaluating on clean test set...
+[15:14:21] INFO Evaluating 'efficientnet_b0_a' on test set
+[15:14:55] INFO Confusion matrix figure: C:\Users\miaot\Github\Project_DeepLearningClass\outputs\figures\efficientnet_b0_a_confusion_matrix.png
+[15:14:56] INFO Training curves figure: C:\Users\miaot\Github\Project_DeepLearningClass\outputs\figures\efficientnet_b0_a_training_curves.png
+[15:14:56] INFO Test accuracy: 0.9988   macro F1: 0.9989
+[15:14:56] INFO Test acc=0.9988  macroF1=0.9989
+[15:14:56] INFO Config a done: {'config': 'a', 'stage1_seconds': 3050.4, 'stage2_seconds': 6118.3, 'stage1_best_val_accuracy': 0.6800000071525574, 'stage2_best_val_accuracy': 0.9987878799438477, 'test_accuracy': 0.9987878787878788, 'macro_f1': 0.9988749113236022}
+[15:14:56] INFO Phase D summary saved to C:\Users\miaot\Github\Project_DeepLearningClass\outputs\reports\phaseD_summary.json
+[2026-04-30 15:14:58] <<< done config a
+[2026-04-30 15:14:58] >>> running config b
+Epoch 6/15
+963/963 - 439s - 456ms/step - accuracy: 0.9491 - loss: 0.3492 - val_accuracy: 0.9952 - val_loss: 0.0528 - learning_rate: 7.1977e-05
+Epoch 7/15
+963/963 - 444s - 461ms/step - accuracy: 0.9576 - loss: 0.3283 - val_accuracy: 0.9968 - val_loss: 0.0510 - learning_rate: 6.1515e-05
+Epoch 8/15
+963/963 - 422s - 439ms/step - accuracy: 0.9572 - loss: 0.3369 - val_accuracy: 0.9968 - val_loss: 0.0457 - learning_rate: 5.0500e-05
+Epoch 9/15
+963/963 - 407s - 423ms/step - accuracy: 0.9577 - loss: 0.3233 - val_accuracy: 0.9976 - val_loss: 0.0377 - learning_rate: 3.9485e-05
+Epoch 10/15
+963/963 - 432s - 448ms/step - accuracy: 0.9603 - loss: 0.3186 - val_accuracy: 0.9977 - val_loss: 0.0402 - learning_rate: 2.9023e-05
+Epoch 11/15
+963/963 - 422s - 438ms/step - accuracy: 0.9631 - loss: 0.3278 - val_accuracy: 0.9982 - val_loss: 0.0394 - learning_rate: 1.9637e-05
+Epoch 12/15
+963/963 - 417s - 433ms/step - accuracy: 0.9711 - loss: 0.2857 - val_accuracy: 0.9983 - val_loss: 0.0327 - learning_rate: 1.1799e-05
+Epoch 13/15
+963/963 - 409s - 424ms/step - accuracy: 0.9633 - loss: 0.3061 - val_accuracy: 0.9986 - val_loss: 0.0365 - learning_rate: 5.9020e-06
+Epoch 14/15
+963/963 - 525s - 545ms/step - accuracy: 0.9677 - loss: 0.3031 - val_accuracy: 0.9985 - val_loss: 0.0315 - learning_rate: 2.2411e-06
+Epoch 15/15
+963/963 - 393s - 408ms/step - accuracy: 0.9683 - loss: 0.2958 - val_accuracy: 0.9985 - val_loss: 0.0270 - learning_rate: 1.0000e-06
+Restoring model weights from the end of the best epoch: 13.
+[17:57:11] INFO Stage 1 best val_acc=0.6744, Stage 2 best=0.9986
+[17:57:11] INFO Evaluating on clean test set...
+[17:57:11] INFO Evaluating 'efficientnet_b0_b' on test set
+[17:57:44] INFO Confusion matrix figure: C:\Users\miaot\Github\Project_DeepLearningClass\outputs\figures\efficientnet_b0_b_confusion_matrix.png
+[17:57:44] INFO Training curves figure: C:\Users\miaot\Github\Project_DeepLearningClass\outputs\figures\efficientnet_b0_b_training_curves.png
+[17:57:44] INFO Test accuracy: 0.9991   macro F1: 0.9991
+[17:57:44] INFO Test acc=0.9991  macroF1=0.9991
+[17:57:44] INFO Config b done: {'config': 'b', 'stage1_seconds': 3739.5, 'stage2_seconds': 5981.1, 'stage1_best_val_accuracy': 0.6743939518928528, 'stage2_best_val_accuracy': 0.9986363649368286, 'test_accuracy': 0.9990909090909091, 'macro_f1': 0.9991267720362873}
+[17:57:44] INFO Phase D summary saved to C:\Users\miaot\Github\Project_DeepLearningClass\outputs\reports\phaseD_summary.json
+[2026-04-30 17:57:47] <<< done config b
+[2026-04-30 17:57:47] >>> running config c
+963/963 - 406s - 422ms/step - accuracy: 0.9570 - loss: 0.3256 - val_accuracy: 0.9962 - val_loss: 0.0534 - learning_rate: 6.1515e-05
+Epoch 8/15
+963/963 - 407s - 423ms/step - accuracy: 0.9583 - loss: 0.3361 - val_accuracy: 0.9971 - val_loss: 0.0455 - learning_rate: 5.0500e-05
+Epoch 9/15
+963/963 - 395s - 410ms/step - accuracy: 0.9600 - loss: 0.3220 - val_accuracy: 0.9974 - val_loss: 0.0453 - learning_rate: 3.9485e-05
+Epoch 10/15
+963/963 - 404s - 420ms/step - accuracy: 0.9609 - loss: 0.3190 - val_accuracy: 0.9979 - val_loss: 0.0401 - learning_rate: 2.9023e-05
+Epoch 11/15
+963/963 - 389s - 404ms/step - accuracy: 0.9635 - loss: 0.3266 - val_accuracy: 0.9983 - val_loss: 0.0419 - learning_rate: 1.9637e-05
+Epoch 12/15
+963/963 - 390s - 405ms/step - accuracy: 0.9709 - loss: 0.2854 - val_accuracy: 0.9989 - val_loss: 0.0331 - learning_rate: 1.1799e-05
+Epoch 13/15
+963/963 - 396s - 411ms/step - accuracy: 0.9644 - loss: 0.3054 - val_accuracy: 0.9985 - val_loss: 0.0372 - learning_rate: 5.9020e-06
+Epoch 14/15
+963/963 - 408s - 423ms/step - accuracy: 0.9690 - loss: 0.3044 - val_accuracy: 0.9988 - val_loss: 0.0329 - learning_rate: 2.2411e-06
+Epoch 15/15
+963/963 - 350s - 364ms/step - accuracy: 0.9693 - loss: 0.2956 - val_accuracy: 0.9989 - val_loss: 0.0285 - learning_rate: 1.0000e-06
+Restoring model weights from the end of the best epoch: 12.
+[20:29:39] INFO Stage 1 best val_acc=0.6761, Stage 2 best=0.9989
+[20:29:39] INFO Evaluating on clean test set...
+[20:29:39] INFO Evaluating 'efficientnet_b0_c' on test set
+[20:30:05] INFO Confusion matrix figure: C:\Users\miaot\Github\Project_DeepLearningClass\outputs\figures\efficientnet_b0_c_confusion_matrix.png
+[20:30:05] INFO Training curves figure: C:\Users\miaot\Github\Project_DeepLearningClass\outputs\figures\efficientnet_b0_c_training_curves.png
+[20:30:05] INFO Test accuracy: 0.9985   macro F1: 0.9986
+[20:30:05] INFO Test acc=0.9985  macroF1=0.9986
+[20:30:05] INFO Running TTA inference...
+[20:30:05] INFO TTA: deterministic pass + 4 augmented passes (BN frozen)
+[20:34:05] INFO TTA test acc=0.9992  macroF1=0.9993
+[20:34:05] INFO Config c done: {'config': 'c', 'stage1_seconds': 3246.4, 'stage2_seconds': 5854.7, 'stage1_best_val_accuracy': 0.6760606169700623, 'stage2_best_val_accuracy': 0.9989393949508667, 'test_accuracy': 0.9984848484848485, 'macro_f1': 0.998559661376686}
+[20:34:05] INFO Phase D summary saved to C:\Users\miaot\Github\Project_DeepLearningClass\outputs\reports\phaseD_summary.json
+[2026-04-30 20:34:08] <<< done config c
+[2026-04-30 20:34:08] Regenerating comparison + report...
+Wrote: C:\Users\miaot\Github\Project_DeepLearningClass\outputs\reports\00_final_report.md
+[2026-04-30 20:34:09] === REFINED TRAINING RUN COMPLETE ===

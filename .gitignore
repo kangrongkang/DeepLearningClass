@@ -1,0 +1,44 @@
+# --- Local Claude Code working dir ---
+.claude/
+
+# --- Office/IDE temp files ---
+~$*
+.idea/
+.vscode/
+*.swp
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- Dataset (44k images, ~500 MB) ---
+# Re-download from Kaggle:
+#   https://www.kaggle.com/datasets/borhanitrash/alzheimer-mri-disease-classification-dataset
+archive/
+
+# --- Trained model checkpoints (~400 MB total) ---
+# Re-train via the notebooks under notebooks/ (or src/refined_train.py).
+outputs/models/*.keras
+
+# --- Large derived data ---
+# Regenerate via `python -m src.dedup`.
+outputs/splits/image_hashes.csv
+outputs/splits/image_hashes_smoke.csv
+
+# --- LaTeX build artifacts ---
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.synctex.gz
+paper/main.pdf
+
+# --- Per-step task output cache (Claude Code temp files) ---
+*.task-output

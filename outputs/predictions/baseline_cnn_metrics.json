@@ -1,0 +1,106 @@
+{
+  "model_name": "baseline_cnn",
+  "n_test": 6601,
+  "accuracy": 0.905317376155128,
+  "macro_precision": 0.9104125784434726,
+  "macro_recall": 0.9079591668525817,
+  "macro_f1": 0.9084313987788197,
+  "weighted_f1": 0.9046639703112995,
+  "per_class": {
+    "precision": [
+      0.8568655992236778,
+      0.8597521200260926,
+      0.9250325945241199,
+      1.0
+    ],
+    "recall": [
+      0.9193128578865174,
+      0.7845238095238095,
+      0.946,
+      0.982
+    ],
+    "f1": [
+      0.886991461577097,
+      0.8204170557111734,
+      0.9353988134475939,
+      0.9909182643794148
+    ],
+    "labels": [
+      "NonDemented",
+      "VeryMildDemented",
+      "MildDemented",
+      "ModerateDemented"
+    ]
+  },
+  "confusion_matrix": [
+    [
+      1766,
+      136,
+      19,
+      0
+    ],
+    [
+      271,
+      1318,
+      91,
+      0
+    ],
+    [
+      18,
+      63,
+      1419,
+      0
+    ],
+    [
+      6,
+      16,
+      5,
+      1473
+    ]
+  ],
+  "classification_report": {
+    "NonDemented": {
+      "precision": 0.8568655992236778,
+      "recall": 0.9193128578865174,
+      "f1-score": 0.886991461577097,
+      "support": 1921.0
+    },
+    "VeryMildDemented": {
+      "precision": 0.8597521200260926,
+      "recall": 0.7845238095238095,
+      "f1-score": 0.8204170557111734,
+      "support": 1680.0
+    },
+    "MildDemented": {
+      "precision": 0.9250325945241199,
+      "recall": 0.946,
+      "f1-score": 0.9353988134475939,
+      "support": 1500.0
+    },
+    "ModerateDemented": {
+      "precision": 1.0,
+      "recall": 0.982,
+      "f1-score": 0.9909182643794148,
+      "support": 1500.0
+    },
+    "accuracy": 0.905317376155128,
+    "macro avg": {
+      "precision": 0.9104125784434726,
+      "recall": 0.9079591668525817,
+      "f1-score": 0.9084313987788197,
+      "support": 6601.0
+    },
+    "weighted avg": {
+      "precision": 0.9056160081106954,
+      "recall": 0.905317376155128,
+      "f1-score": 0.9046639703112995,
+      "support": 6601.0
+    }
+  },
+  "training": {
+    "epochs_run": 30,
+    "elapsed_seconds": 11652.21,
+    "best_val_accuracy": 0.9045454263687134,
+    "best_val_loss": 0.2585674226284027
+  }
+}

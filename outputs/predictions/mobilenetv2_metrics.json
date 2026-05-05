@@ -1,0 +1,106 @@
+{
+  "model_name": "mobilenetv2",
+  "n_test": 6601,
+  "accuracy": 0.7426147553401,
+  "macro_precision": 0.7510803347240871,
+  "macro_recall": 0.7467351732728489,
+  "macro_f1": 0.7429923144498147,
+  "weighted_f1": 0.7375067177502522,
+  "per_class": {
+    "precision": [
+      0.6894075403949731,
+      0.6526748971193416,
+      0.6764032073310424,
+      0.9858356940509915
+    ],
+    "recall": [
+      0.799583550234253,
+      0.4720238095238095,
+      0.7873333333333333,
+      0.928
+    ],
+    "f1": [
+      0.7404193781634129,
+      0.5478411053540587,
+      0.7276648182378311,
+      0.9560439560439561
+    ],
+    "labels": [
+      "NonDemented",
+      "VeryMildDemented",
+      "MildDemented",
+      "ModerateDemented"
+    ]
+  },
+  "confusion_matrix": [
+    [
+      1536,
+      189,
+      193,
+      3
+    ],
+    [
+      544,
+      793,
+      333,
+      10
+    ],
+    [
+      136,
+      176,
+      1181,
+      7
+    ],
+    [
+      12,
+      57,
+      39,
+      1392
+    ]
+  ],
+  "classification_report": {
+    "NonDemented": {
+      "precision": 0.6894075403949731,
+      "recall": 0.799583550234253,
+      "f1-score": 0.7404193781634129,
+      "support": 1921.0
+    },
+    "VeryMildDemented": {
+      "precision": 0.6526748971193416,
+      "recall": 0.4720238095238095,
+      "f1-score": 0.5478411053540587,
+      "support": 1680.0
+    },
+    "MildDemented": {
+      "precision": 0.6764032073310424,
+      "recall": 0.7873333333333333,
+      "f1-score": 0.7276648182378311,
+      "support": 1500.0
+    },
+    "ModerateDemented": {
+      "precision": 0.9858356940509915,
+      "recall": 0.928,
+      "f1-score": 0.9560439560439561,
+      "support": 1500.0
+    },
+    "accuracy": 0.7426147553401,
+    "macro avg": {
+      "precision": 0.7510803347240871,
+      "recall": 0.7467351732728489,
+      "f1-score": 0.7429923144498147,
+      "support": 6601.0
+    },
+    "weighted avg": {
+      "precision": 0.7444635758721843,
+      "recall": 0.7426147553401,
+      "f1-score": 0.7375067177502522,
+      "support": 6601.0
+    }
+  },
+  "training": {
+    "epochs_run": 20,
+    "elapsed_seconds": 6680.1,
+    "best_val_accuracy": 0.739393949508667,
+    "best_val_loss": 0.5978636741638184
+  }
+}

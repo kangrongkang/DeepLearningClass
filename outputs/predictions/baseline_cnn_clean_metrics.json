@@ -1,0 +1,102 @@
+{
+  "model_name": "baseline_cnn",
+  "split": "test_clean.csv",
+  "input_size": 128,
+  "n_test": 6600,
+  "accuracy": 0.9124242424242425,
+  "macro_precision": 0.917484651702394,
+  "macro_recall": 0.9149895833333335,
+  "macro_f1": 0.9155140787595861,
+  "weighted_f1": 0.9118740130516689,
+  "per_class": {
+    "precision": [
+      0.8632603406326034,
+      0.874430709173715,
+      0.9322475570032573,
+      1.0
+    ],
+    "recall": [
+      0.9239583333333333,
+      0.8,
+      0.954,
+      0.982
+    ],
+    "f1": [
+      0.8925786163522013,
+      0.8355610817531862,
+      0.942998352553542,
+      0.9909182643794148
+    ],
+    "labels": [
+      "NonDemented",
+      "VeryMildDemented",
+      "MildDemented",
+      "ModerateDemented"
+    ]
+  },
+  "confusion_matrix": [
+    [
+      1774,
+      130,
+      16,
+      0
+    ],
+    [
+      254,
+      1344,
+      82,
+      0
+    ],
+    [
+      19,
+      50,
+      1431,
+      0
+    ],
+    [
+      8,
+      13,
+      6,
+      1473
+    ]
+  ],
+  "classification_report": {
+    "NonDemented": {
+      "precision": 0.8632603406326034,
+      "recall": 0.9239583333333333,
+      "f1-score": 0.8925786163522013,
+      "support": 1920.0
+    },
+    "VeryMildDemented": {
+      "precision": 0.874430709173715,
+      "recall": 0.8,
+      "f1-score": 0.8355610817531862,
+      "support": 1680.0
+    },
+    "MildDemented": {
+      "precision": 0.9322475570032573,
+      "recall": 0.954,
+      "f1-score": 0.942998352553542,
+      "support": 1500.0
+    },
+    "ModerateDemented": {
+      "precision": 1.0,
+      "recall": 0.982,
+      "f1-score": 0.9909182643794148,
+      "support": 1500.0
+    },
+    "accuracy": 0.9124242424242425,
+    "macro avg": {
+      "precision": 0.917484651702394,
+      "recall": 0.9149895833333335,
+      "f1-score": 0.9155140787595861,
+      "support": 6600.0
+    },
+    "weighted avg": {
+      "precision": 0.912859815292625,
+      "recall": 0.9124242424242425,
+      "f1-score": 0.9118740130516689,
+      "support": 6600.0
+    }
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "input_size": 128,
-  "stage1_seconds": 3012.2,
-  "stage2_seconds": 6448.0,
-  "stage1_best_val_accuracy": 0.6160606145858765,
-  "stage2_best_val_accuracy": 0.9934848546981812,
-  "test_accuracy": 0.9942424242424243,
-  "macro_f1": 0.9944479533182917
-}

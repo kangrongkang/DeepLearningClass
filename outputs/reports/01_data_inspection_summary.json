@@ -1,0 +1,28 @@
+{
+  "data_root": "C:\\Users\\miaot\\Github\\Project_DeepLearningClass\\archive\\combined_images",
+  "total_images": 44000,
+  "class_counts": {
+    "NonDemented": 12800,
+    "VeryMildDemented": 11200,
+    "MildDemented": 10000,
+    "ModerateDemented": 10000
+  },
+  "image_probe": {
+    "checked": 200,
+    "modes": {
+      "RGB": 138,
+      "L": 62
+    },
+    "sizes": {
+      "200x190": 140,
+      "180x180": 24,
+      "176x208": 36
+    },
+    "corrupt": []
+  },
+  "figures": {
+    "class_counts": "C:\\Users\\miaot\\Github\\Project_DeepLearningClass\\outputs\\figures\\class_counts.png",
+    "sample_grid": "C:\\Users\\miaot\\Github\\Project_DeepLearningClass\\outputs\\figures\\01_sample_grid.png"
+  },
+  "elapsed_seconds": 0.8
+}

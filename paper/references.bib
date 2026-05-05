@@ -1,0 +1,375 @@
+% references.bib — every entry verified by the citation-research agent (Task F2)
+% and by the citation-validity check agent (Task F7).
+% Each entry includes a venue, year, and arXiv ID or DOI.
+
+% ---------- Clinical / motivation ----------
+
+@misc{alzint2024world,
+  author       = {{Alzheimer's Disease International}},
+  title        = {World {A}lzheimer Report 2024: Global changes in attitudes to dementia},
+  year         = {2024},
+  howpublished = {\url{https://www.alzint.org/resource/world-alzheimer-report-2024/}},
+  note         = {Accessed: 2026-04}
+}
+
+@article{alz2024facts,
+  author  = {{Alzheimer's Association}},
+  title   = {2024 {A}lzheimer's disease facts and figures},
+  journal = {Alzheimer's \& Dementia},
+  year    = {2024},
+  doi     = {10.1002/alz.13809}
+}
+
+@article{jack2018niaaa,
+  author  = {Jack, Jr., Clifford R. and Bennett, David A. and Blennow, Kaj and Carrillo, Maria C.
+             and Dunn, Billy and Haeberlein, Samantha Budd and Holtzman, David M. and Jagust, William
+             and Jessen, Frank and Karlawish, Jason and Liu, Enchi and Molinuevo, Jos{\'e} Luis
+             and Montine, Thomas and Phelps, Creighton and Rankin, Katherine P.
+             and Rowe, Christopher C. and Scheltens, Philip and Siemers, Eric
+             and Snyder, Heather M. and Sperling, Reisa},
+  title   = {{NIA}-{AA} Research Framework: Toward a biological definition of {A}lzheimer's disease},
+  journal = {Alzheimer's \& Dementia},
+  volume  = {14},
+  number  = {4},
+  pages   = {535--562},
+  year    = {2018},
+  doi     = {10.1016/j.jalz.2018.02.018}
+}
+
+% ---------- Foundational deep-learning architecture ----------
+
+@article{lecun1998gradient,
+  author  = {LeCun, Yann and Bottou, L{\'e}on and Bengio, Yoshua and Haffner, Patrick},
+  title   = {Gradient-based learning applied to document recognition},
+  journal = {Proceedings of the {IEEE}},
+  volume  = {86},
+  number  = {11},
+  pages   = {2278--2324},
+  year    = {1998},
+  doi     = {10.1109/5.726791}
+}
+
+@inproceedings{krizhevsky2012imagenet,
+  author    = {Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E.},
+  title     = {{ImageNet} classification with deep convolutional neural networks},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2012},
+  pages     = {1097--1105},
+  note      = {Reprinted as Comm.\ ACM 60(6), 84--90 (2017), \url{https://doi.org/10.1145/3065386}}
+}
+
+@inproceedings{he2016resnet,
+  author    = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  title     = {Deep residual learning for image recognition},
+  booktitle = {{IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+  year      = {2016},
+  pages     = {770--778},
+  eprint    = {1512.03385},
+  archivePrefix = {arXiv},
+  doi       = {10.1109/CVPR.2016.90}
+}
+
+@article{litjens2017survey,
+  author  = {Litjens, Geert and Kooi, Thijs and Bejnordi, Babak Ehteshami and Setio, Arnaud Arindra Adiyoso
+             and Ciompi, Francesco and Ghafoorian, Mohsen and van der Laak, Jeroen A. W. M.
+             and van Ginneken, Bram and S{\'a}nchez, Clara I.},
+  title   = {A survey on deep learning in medical image analysis},
+  journal = {Medical Image Analysis},
+  volume  = {42},
+  pages   = {60--88},
+  year    = {2017},
+  eprint  = {1702.05747},
+  archivePrefix = {arXiv},
+  doi     = {10.1016/j.media.2017.07.005}
+}
+
+% ---------- Backbones we benchmark ----------
+
+@inproceedings{simonyan2014vgg,
+  author    = {Simonyan, Karen and Zisserman, Andrew},
+  title     = {Very deep convolutional networks for large-scale image recognition},
+  booktitle = {International Conference on Learning Representations ({ICLR})},
+  year      = {2015},
+  eprint    = {1409.1556},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{sandler2018mobilenetv2,
+  author    = {Sandler, Mark and Howard, Andrew and Zhu, Menglong and Zhmoginov, Andrey and Chen, Liang-Chieh},
+  title     = {{MobileNetV2}: Inverted residuals and linear bottlenecks},
+  booktitle = {{IEEE/CVF} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+  year      = {2018},
+  pages     = {4510--4520},
+  eprint    = {1801.04381},
+  archivePrefix = {arXiv},
+  doi       = {10.1109/CVPR.2018.00474}
+}
+
+@inproceedings{tan2019efficientnet,
+  author    = {Tan, Mingxing and Le, Quoc V.},
+  title     = {{EfficientNet}: Rethinking model scaling for convolutional neural networks},
+  booktitle = {International Conference on Machine Learning ({ICML})},
+  year      = {2019},
+  eprint    = {1905.11946},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{huang2017densenet,
+  author    = {Huang, Gao and Liu, Zhuang and van der Maaten, Laurens and Weinberger, Kilian Q.},
+  title     = {Densely connected convolutional networks},
+  booktitle = {{IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+  year      = {2017},
+  pages     = {2261--2269},
+  eprint    = {1608.06993},
+  archivePrefix = {arXiv},
+  doi       = {10.1109/CVPR.2017.243}
+}
+
+% ---------- Transfer learning on medical imaging ----------
+
+@inproceedings{raghu2019transfusion,
+  author    = {Raghu, Maithra and Zhang, Chiyuan and Kleinberg, Jon and Bengio, Samy},
+  title     = {Transfusion: Understanding transfer learning for medical imaging},
+  booktitle = {Advances in Neural Information Processing Systems ({NeurIPS})},
+  year      = {2019},
+  eprint    = {1902.07208},
+  archivePrefix = {arXiv}
+}
+
+@article{mei2022radimagenet,
+  author  = {Mei, Xueyan and Liu, Zelong and Robson, Philip M. and Marinelli, Brett and Huang, Mingqian
+             and Doshi, Amish and Jacobi, Adam and Cao, Chendi and Link, Katherine E. and Yang, Thomas
+             and Wang, Ying and Greenspan, Hayit and Deyer, Timothy and Fayad, Zahi A. and Yang, Yang},
+  title   = {{RadImageNet}: An open radiologic deep learning research dataset for effective transfer learning},
+  journal = {Radiology: Artificial Intelligence},
+  volume  = {4},
+  number  = {5},
+  year    = {2022},
+  doi     = {10.1148/ryai.210315}
+}
+
+% ---------- Training-recipe components ----------
+
+@inproceedings{loshchilov2019adamw,
+  author    = {Loshchilov, Ilya and Hutter, Frank},
+  title     = {Decoupled weight decay regularization},
+  booktitle = {International Conference on Learning Representations ({ICLR})},
+  year      = {2019},
+  eprint    = {1711.05101},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{zhang2018mixup,
+  author    = {Zhang, Hongyi and Ciss{\'e}, Moustapha and Dauphin, Yann N. and Lopez-Paz, David},
+  title     = {mixup: Beyond empirical risk minimization},
+  booktitle = {International Conference on Learning Representations ({ICLR})},
+  year      = {2018},
+  eprint    = {1710.09412},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{yun2019cutmix,
+  author    = {Yun, Sangdoo and Han, Dongyoon and Oh, Seong Joon and Chun, Sanghyuk and Choe, Junsuk and Yoo, Youngjoon},
+  title     = {{CutMix}: Regularization strategy to train strong classifiers with localizable features},
+  booktitle = {{IEEE/CVF} International Conference on Computer Vision ({ICCV})},
+  year      = {2019},
+  eprint    = {1905.04899},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{cubuk2020randaugment,
+  author    = {Cubuk, Ekin D. and Zoph, Barret and Shlens, Jonathon and Le, Quoc V.},
+  title     = {{RandAugment}: Practical automated data augmentation with a reduced search space},
+  booktitle = {Advances in Neural Information Processing Systems ({NeurIPS})},
+  year      = {2020},
+  eprint    = {1909.13719},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{szegedy2016inceptionv3,
+  author    = {Szegedy, Christian and Vanhoucke, Vincent and Ioffe, Sergey and Shlens, Jonathon and Wojna, Zbigniew},
+  title     = {Rethinking the {Inception} architecture for computer vision},
+  booktitle = {{IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+  year      = {2016},
+  pages     = {2818--2826},
+  eprint    = {1512.00567},
+  archivePrefix = {arXiv},
+  doi       = {10.1109/CVPR.2016.308}
+}
+
+@inproceedings{izmailov2018swa,
+  author    = {Izmailov, Pavel and Podoprikhin, Dmitrii and Garipov, Timur and Vetrov, Dmitry and Wilson, Andrew Gordon},
+  title     = {Averaging weights leads to wider optima and better generalization},
+  booktitle = {Conference on Uncertainty in Artificial Intelligence ({UAI})},
+  year      = {2018},
+  eprint    = {1803.05407},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{lin2017focal,
+  author    = {Lin, Tsung-Yi and Goyal, Priya and Girshick, Ross and He, Kaiming and Doll{\'a}r, Piotr},
+  title     = {Focal loss for dense object detection},
+  booktitle = {{IEEE} International Conference on Computer Vision ({ICCV})},
+  year      = {2017},
+  eprint    = {1708.02002},
+  archivePrefix = {arXiv}
+}
+
+% ---------- Data leakage in medical deep learning ----------
+
+@article{yagis2021leakage,
+  author  = {Yagis, Ekin and Atnafu, Selamawet Workalemahu and de Herrera, Alba Garc{\'i}a Seco
+             and Marzi, Chiara and Scheda, Riccardo and Giannelli, Marco and Tessa, Carlo
+             and Citi, Luca and Diciotti, Stefano},
+  title   = {Effect of data leakage in brain {MRI} classification using {2D} convolutional neural networks},
+  journal = {Scientific Reports},
+  volume  = {11},
+  pages   = {22544},
+  year    = {2021},
+  doi     = {10.1038/s41598-021-01681-w}
+}
+
+@article{wen2020adcnn,
+  author  = {Wen, Junhao and Thibeau-Sutre, Elina and Diaz-Melo, Mauricio and Samper-Gonz{\'a}lez, Jorge
+             and Routier, Alexandre and Bottani, Simona and Dormont, Didier and Durrleman, Stanley
+             and Burgos, Ninon and Colliot, Olivier},
+  title   = {Convolutional neural networks for classification of {A}lzheimer's disease:
+             Overview and reproducible evaluation},
+  journal = {Medical Image Analysis},
+  volume  = {63},
+  pages   = {101694},
+  year    = {2020},
+  eprint  = {1904.07773},
+  archivePrefix = {arXiv},
+  doi     = {10.1016/j.media.2020.101694}
+}
+
+@article{young2025leakage,
+  author  = {Young, V. M. and Gates, S. and Garcia, L. Y. and Salardini, A.},
+  title   = {Data leakage in deep learning for {A}lzheimer's disease diagnosis:
+             A scoping review of methodological rigor and performance inflation},
+  journal = {Diagnostics},
+  volume  = {15},
+  number  = {18},
+  pages   = {2348},
+  year    = {2025},
+  doi     = {10.3390/diagnostics15182348}
+}
+
+% ---------- Perceptual hashing ----------
+
+@misc{zauner2010phash,
+  author       = {Zauner, Christoph},
+  title        = {Implementation and Benchmarking of Perceptual Image Hash Functions},
+  howpublished = {Master's thesis, Upper Austria University of Applied Sciences},
+  year         = {2010},
+  note         = {\url{https://www.phash.org/docs/pubs/thesis_zauner.pdf}}
+}
+
+@misc{buchner2013imagehash,
+  author       = {Buchner, Johannes},
+  title        = {{ImageHash}: A Python perceptual image hashing module},
+  howpublished = {\url{https://github.com/JohannesBuchner/imagehash}},
+  year         = {2013--2025},
+  note         = {Software package, version 4.3.1 used in this work}
+}
+
+% ---------- Explainability ----------
+
+@inproceedings{selvaraju2017gradcam,
+  author    = {Selvaraju, Ramprasaath R. and Cogswell, Michael and Das, Abhishek and Vedantam, Ramakrishna
+               and Parikh, Devi and Batra, Dhruv},
+  title     = {{Grad-CAM}: Visual explanations from deep networks via gradient-based localization},
+  booktitle = {{IEEE} International Conference on Computer Vision ({ICCV})},
+  year      = {2017},
+  pages     = {618--626},
+  eprint    = {1610.02391},
+  archivePrefix = {arXiv},
+  doi       = {10.1109/ICCV.2017.74}
+}
+
+% ---------- Tooling ----------
+
+@article{pedregosa2011sklearn,
+  author  = {Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V. and Thirion, B.
+             and Grisel, O. and Blondel, M. and Prettenhofer, P. and Weiss, R. and Dubourg, V.
+             and Vanderplas, J. and Passos, A. and Cournapeau, D. and Brucher, M. and Perrot, M.
+             and Duchesnay, E.},
+  title   = {Scikit-learn: Machine learning in {P}ython},
+  journal = {Journal of Machine Learning Research},
+  volume  = {12},
+  pages   = {2825--2830},
+  year    = {2011}
+}
+
+% ---------- Datasets ----------
+
+@misc{kumar2022alzheimermri,
+  author       = {Kumar, Sachin and Shastri, Sourabh},
+  title        = {Alzheimer {MRI} preprocessed dataset},
+  howpublished = {Kaggle Datasets},
+  year         = {2022},
+  doi          = {10.34740/kaggle/ds/2029496}
+}
+
+@misc{uraninjo2022augmentedalzheimer,
+  author       = {Uraninjo},
+  title        = {Augmented {A}lzheimer {MRI} dataset},
+  howpublished = {Kaggle Datasets, \url{https://www.kaggle.com/datasets/uraninjo/augmented-alzheimer-mri-dataset}},
+  year         = {2022}
+}
+
+@misc{borhanitrash2023alzheimermri,
+  author       = {Borhanitrash},
+  title        = {Alzheimer {MRI} disease classification dataset},
+  howpublished = {Kaggle Datasets, \url{https://www.kaggle.com/datasets/borhanitrash/alzheimer-mri-disease-classification-dataset}},
+  year         = {2023},
+  note         = {Re-publication of the augmented variant; the dataset used in this work}
+}
+
+% ---------- Existing high-accuracy claims on related Kaggle Alzheimer-MRI corpora ----------
+
+@article{ellatif2023lightweight,
+  author  = {Abd El-Latif, Ahmed A. and Chelloug, Samia Allaoua and Alabdulhafith, Maali and Hammad, Mohamed},
+  title   = {Accurate detection of {A}lzheimer's disease using lightweight deep learning model on {MRI} data},
+  journal = {Diagnostics},
+  volume  = {13},
+  number  = {7},
+  pages   = {1216},
+  year    = {2023},
+  doi     = {10.3390/diagnostics13071216}
+}
+
+@article{yakkundi2024tinynet,
+  author  = {Yakkundi, Ananya and Gupta, Radha and Ramesh, Kokila and Verma, Amit
+             and Khan, Umair and Ansari, Mushtaq Ahmad},
+  title   = {Implications of convolutional neural network for brain {MRI} image classification
+             to identify {A}lzheimer's disease},
+  journal = {Parkinson's Disease (Wiley)},
+  volume  = {2024},
+  pages   = {6111483},
+  year    = {2024},
+  doi     = {10.1155/2024/6111483}
+}
+
+@article{hussain2025finetuned,
+  author  = {Hussain, Muhammad Zahid and Shahzad, Tariq and Mehmood, Shahid and Akram, Kainat
+             and Khan, Muhammad Adnan and Tariq, Muhammad Usman and Ahmed, Arfan},
+  title   = {A fine-tuned convolutional neural network model for accurate {A}lzheimer's disease classification},
+  journal = {Scientific Reports},
+  volume  = {15},
+  pages   = {4445},
+  year    = {2025},
+  doi     = {10.1038/s41598-025-86635-2}
+}
+
+@article{elassy2024novelcnn,
+  author  = {El-Assy, A. M. and Amer, Hanan M. and Ibrahim, H. M. and Mohamed, M. A.},
+  title   = {A novel {CNN} architecture for accurate early detection and classification of
+             {A}lzheimer's disease using {MRI} data},
+  journal = {Scientific Reports},
+  volume  = {14},
+  pages   = {3463},
+  year    = {2024},
+  doi     = {10.1038/s41598-024-53733-6}
+}

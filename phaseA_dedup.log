@@ -1,5 +1,0 @@
-[12:27:58] INFO === Phase A — pHash dedup, threshold=8 ===
-[12:27:58] INFO Reading cached hashes: C:\Users\miaot\Github\Project_DeepLearningClass\outputs\splits\image_hashes.csv
-[12:28:26] INFO === Phase A — pHash dedup, threshold=8 ===
-[12:28:26] INFO Reading cached hashes: C:\Users\miaot\Github\Project_DeepLearningClass\outputs\splits\image_hashes.csv
-[12:28:36] INFO Phase A summary saved to C:\Users\miaot\Github\Project_DeepLearningClass\outputs\reports\phaseA_summary.json

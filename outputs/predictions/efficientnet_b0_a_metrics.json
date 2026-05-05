@@ -1,0 +1,106 @@
+{
+  "model_name": "efficientnet_b0_a",
+  "n_test": 6600,
+  "accuracy": 0.9987878787878788,
+  "macro_precision": 0.9988475280474602,
+  "macro_recall": 0.9989025297619047,
+  "macro_f1": 0.9988749113236022,
+  "weighted_f1": 0.9987877459922576,
+  "per_class": {
+    "precision": [
+      0.9984358706986444,
+      0.9976204640095181,
+      0.9993337774816788,
+      1.0
+    ],
+    "recall": [
+      0.9973958333333334,
+      0.9982142857142857,
+      1.0,
+      1.0
+    ],
+    "f1": [
+      0.9979155810317873,
+      0.9979172865218685,
+      0.9996667777407531,
+      1.0
+    ],
+    "labels": [
+      "NonDemented",
+      "VeryMildDemented",
+      "MildDemented",
+      "ModerateDemented"
+    ]
+  },
+  "confusion_matrix": [
+    [
+      1915,
+      4,
+      1,
+      0
+    ],
+    [
+      3,
+      1677,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1500,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1500
+    ]
+  ],
+  "classification_report": {
+    "NonDemented": {
+      "precision": 0.9984358706986444,
+      "recall": 0.9973958333333334,
+      "f1-score": 0.9979155810317873,
+      "support": 1920.0
+    },
+    "VeryMildDemented": {
+      "precision": 0.9976204640095181,
+      "recall": 0.9982142857142857,
+      "f1-score": 0.9979172865218685,
+      "support": 1680.0
+    },
+    "MildDemented": {
+      "precision": 0.9993337774816788,
+      "recall": 1.0,
+      "f1-score": 0.9996667777407531,
+      "support": 1500.0
+    },
+    "ModerateDemented": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1500.0
+    },
+    "accuracy": 0.9987878787878788,
+    "macro avg": {
+      "precision": 0.9988475280474602,
+      "recall": 0.9989025297619047,
+      "f1-score": 0.9988749113236022,
+      "support": 6600.0
+    },
+    "weighted avg": {
+      "precision": 0.9987878662878646,
+      "recall": 0.9987878787878788,
+      "f1-score": 0.9987877459922576,
+      "support": 6600.0
+    }
+  },
+  "training": {
+    "epochs_run": 15,
+    "elapsed_seconds": 9168.634584188461,
+    "best_val_accuracy": 0.9987878799438477,
+    "best_val_loss": 0.00323627726174891
+  }
+}
