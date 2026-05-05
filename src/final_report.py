@@ -39,10 +39,23 @@ def _read_json(path: Path) -> dict | None:
 
 
 def _figure_md(rel_path: Path | str, alt: str, caption: str) -> str:
+    """Return a Markdown image link with caption.
+
+    The report lives at ``outputs/reports/00_final_report.md``. Image links
+    must be expressed relative to *that* file, i.e. ``../figures/X.png``,
+    even though the caller passes a project-root-relative path like
+    ``outputs/figures/X.png`` for clarity. We resolve existence against the
+    project root and rewrite the link.
+    """
     rel = Path(rel_path)
-    if not (PROJECT_ROOT / rel).exists():
-        return f"_(figure missing: {rel})_\n"
-    return f"![{alt}]({rel.as_posix()})\n\n*Figure — {caption}.*\n"
+    parts = list(rel.parts)
+    if parts and parts[0] == "outputs":
+        parts = parts[1:]
+    disk_path = Path("outputs") / Path(*parts) if parts else rel
+    if not (PROJECT_ROOT / disk_path).exists():
+        return f"_(figure missing: {disk_path.as_posix()})_\n"
+    md_link = Path("..") / Path(*parts)
+    return f"![{alt}]({md_link.as_posix()})\n\n*Figure — {caption}.*\n"
 
 
 def build_final_report() -> Path:
@@ -214,16 +227,48 @@ def build_final_report() -> Path:
         "on top of D-a. Label smoothing is **off** (Mixup already produces soft targets; "
         "stacking smoothing would over-smooth).")
 
-    sec10 = _model_section(
-        10, "efficientnet_b0_c_tta",
-        "Model D-c — EfficientNet-B0 + Mixup + SWA + TTA",
-        "Adds Stochastic Weight Averaging on the last 25% of stage-2 epochs and "
-        "test-time augmentation (4 augmented passes + 1 deterministic pass; "
-        "augmentation applied *outside* the model graph so BatchNorm running "
-        "statistics stay frozen).")
+    # Section 10 covers BOTH D-c (SWA without TTA) and D-c+TTA (best model).
+    # We keep them in a single section so the negative SWA delta is visible
+    # alongside the TTA recovery, rather than hiding it behind the +TTA number.
+    def _dc_section() -> str:
+        m_swa = metrics.get("efficientnet_b0_c")
+        m_tta = metrics.get("efficientnet_b0_c_tta")
+        block = (
+            "\n## 10. Model D-c — EfficientNet-B0 + Mixup + SWA, with and without TTA\n\n"
+            "Adds Stochastic Weight Averaging on the last 25 % of stage-2 epochs on "
+            "top of D-b. We report the model **without TTA** and **with TTA** "
+            "separately so the TTA contribution is attributable.\n\n"
+        )
+        if m_swa:
+            block += (
+                "**Headline metrics — D-c (SWA, no TTA):**\n\n"
+                f"- Accuracy: **{m_swa['accuracy']:.4f}**, "
+                f"Macro F1: **{m_swa['macro_f1']:.4f}**\n"
+            )
+            if m_swa.get("training", {}).get("elapsed_seconds"):
+                block += f"- Wall-clock: ≈ {m_swa['training']['elapsed_seconds']:.0f} s\n"
+            block += (
+                "\nThis is *worse* than D-b, suggesting SWA in this single-seed "
+                "configuration did not help.\n\n"
+            )
+        if m_tta:
+            block += (
+                "**Headline metrics — D-c + TTA (best model):**\n\n"
+                f"- Accuracy: **{m_tta['accuracy']:.4f}**, "
+                f"Macro F1: **{m_tta['macro_f1']:.4f}**\n"
+                "- TTA pass: 4 augmented passes + 1 deterministic; augmentation "
+                "applied *outside* the model graph so BatchNorm running statistics "
+                "stay frozen.\n\n"
+            )
+            block += _figure_md(
+                f"outputs/figures/efficientnet_b0_c_tta_confusion_matrix.png",
+                "effnet c+tta confusion",
+                "EfficientNet-B0 D-c + TTA confusion matrix")
+        return block
+    sec10 = _dc_section()
 
-    # -------------------- Section 7: Comparison --------------------
-    comparison = "\n## 7. Comparison\n\n"
+    # -------------------- Section 11: Comparison --------------------
+    comparison = "\n## 11. Comparison\n\n"
     if metrics:
         try:
             tab = comparison_table(metrics)
@@ -254,8 +299,8 @@ def build_final_report() -> Path:
     comparison += _figure_md("outputs/figures/06_confusion_matrices_side_by_side.png",
                              "confusion matrices", "side-by-side normalized confusion matrices")
 
-    # -------------------- Section 8: Grad-CAM --------------------
-    gradcam = "\n## 8. Explainability — Grad-CAM\n\n"
+    # -------------------- Section 12: Grad-CAM --------------------
+    gradcam = "\n## 12. Explainability — Grad-CAM\n\n"
     gradcam += (
         "Grad-CAM produces a class-discriminative localization map by weighting "
         "the activations of the last conv layer with the gradients of the predicted "
@@ -269,49 +314,47 @@ def build_final_report() -> Path:
                               f"Grad-CAM {name}",
                               f"Grad-CAM heatmaps for {name} — original / heatmap / overlay per row")
 
-    # -------------------- Section 9: Discussion & limitations --------------------
+    # -------------------- Section 14: Discussion & limitations --------------------
     discussion = (
-        "\n## 9. Discussion and Limitations\n\n"
+        "\n## 14. Discussion and Limitations\n\n"
         "**The dataset is augmented and upsampled.** The Kaggle dataset description "
-        "explicitly states that the images have already been augmented and upsampled. "
-        "Together with image-level random splitting (we cannot do patient-level "
-        "splitting because the dataset does not expose patient or scan IDs), this "
-        "creates a real risk that very similar images leak across train / val / test. "
-        "The reported numbers are therefore *upper bounds* on what these models would "
-        "achieve in a clinical evaluation.\n\n"
+        "explicitly states that the images have been augmented and upsampled. Our "
+        "cluster-stratified pHash split is the strictest leakage control the data "
+        "structure permits, since the dataset does not expose patient or scan IDs. "
+        "Subject-level leakage may still be present; the 99.9 % numbers should be "
+        "read as *\"saturated under the strongest leakage control this dataset "
+        "permits,\"* not as a clinical accuracy.\n\n"
         "**Inputs are 2D JPGs, not 3D MRI volumes.** The models classify pre-processed "
         "2D slices, which loses through-plane structure available in raw NIfTI / DICOM "
-        "volumes. A more rigorous pipeline would operate on full 3D volumes with "
-        "patient-level splits.\n\n"
-        "**Macro F1 is the right headline metric here.** With a 28% / 25% / 23% / 23% "
-        "class distribution, accuracy alone is misleading — a model that always "
-        "predicts NonDemented can already score ~28% accuracy with macro F1 ≈ 0.11. "
-        "Macro F1 (and per-class F1) are reported alongside accuracy.\n\n"
+        "volumes.\n\n"
+        "**Macro F1 is the right headline metric here.** With a 29 % / 25 % / 23 % / "
+        "23 % class distribution, accuracy alone is misleading.\n\n"
+        "**Why does ImageNet pretraining lose at 128² for VGG16/MobileNetV2 but not "
+        "for EfficientNet-B0?** Our (D-128) ablation rules out a generic "
+        "\"resolution-mismatch\" explanation: EfficientNet-B0 at the same 128² that "
+        "crippled VGG16 / MobileNetV2 reaches macro F1 0.9944 — only 0.5 pp behind "
+        "the same model at 224². Three mechanisms plausibly contribute:\n\n"
+        "1. **Compound scaling** — EfficientNet-B0 was designed via a principled "
+        "depth/width/resolution sweep (Tan & Le 2019), so down-scaling the input does "
+        "less damage to the feature pyramid than for hand-engineered VGG16.\n"
+        "2. **MBConv inverted residuals** with squeeze-and-excitation gates and SiLU "
+        "activations are more parameter-efficient than VGG-style blocks in low-data "
+        "regimes.\n"
+        "3. **Fine-tuning depth** — we unfroze the entire backbone for D-128 stage 2; "
+        "for MobileNetV2 we only unfroze the top 20 layers and for VGG16 we did not "
+        "fine-tune at all. Raghu et al. (2019) explicitly note that full-network "
+        "fine-tuning matters more than head-only adaptation for medical-imaging "
+        "transfer.\n\n"
+        "**Single-seed caveat for the recipe ablation.** The (D-a) → (D-b) → (D-c) "
+        "deltas are all $\\leq$ 0.0007 macro-F1, which is within single-seed "
+        "run-to-run noise. We **cannot** attribute these small differences to Mixup, "
+        "SWA, or TTA without multi-seed runs.\n\n"
         "**Therefore, this project is best interpreted as a benchmark comparison "
         "between architectures, not as a clinical diagnostic system.**\n\n"
-        "**Other limitations / caveats.**\n\n"
-        "- Native Windows TF stopped supporting GPU after TF 2.10; the local RTX 5080 "
-        "  (Blackwell, sm_120) cannot use those old wheels. Full training runs on "
-        "  Google Colab GPU; the notebooks include a `SMOKE` toggle that auto-degrades "
-        "  to a 2-epoch run on 2% of the data when no GPU is visible.\n"
-        "- Grad-CAM is a correlative explanation. It says where the model is looking, "
-        "  not whether what it is looking at is clinically informative.\n"
-        "- The `tf.data` pipeline uses `reshuffle_each_iteration=True` and AUTOTUNE "
-        "  parallel mapping, so per-epoch training order is not bit-identical across "
-        "  machines even at SEED=42; the splits themselves *are* deterministic.\n\n"
-        "## 10. Reproducibility checklist\n\n"
-        "- All splits saved as CSVs at `outputs/splits/`.\n"
-        "- All best weights saved at `outputs/models/<model>.keras`.\n"
-        "- All test predictions saved at `outputs/predictions/<model>_test_predictions.npz` "
-        "  with `y_true`, `y_pred`, `y_proba`, and per-row `relpaths`.\n"
-        "- All metrics saved as JSON at `outputs/predictions/<model>_metrics.json`.\n"
-        "- Per-step Markdown reports at `outputs/reports/`.\n"
-        "- This final report is fully regenerated from those artifacts by "
-        "  `python -m src.final_report` — no model loading or retraining required.\n"
     )
 
     # ---------------- Phase A audit + leakage section ----------------
-    leakage = "\n## 11. Leakage Audit (Phase A)\n\n"
+    leakage = "\n## 13. Phase A — Leakage Audit\n\n"
     if phase_a:
         cs = phase_a.get("cluster_stats", {})
         leakage += (
@@ -349,40 +392,69 @@ def build_final_report() -> Path:
         )
 
     # ---------------- Ablation summary ----------------
-    ablation = "\n## 12. Ablation: where does the +8.4 pp gain come from?\n\n"
+    ablation = "\n## 15. Ablation: where does the +8.4 pp gain come from?\n\n"
     ablation += (
         "The refined model gains 8.4 macro-F1 points over the strongest baseline. "
-        "We disentangle the contribution of each recipe component:\n\n"
+        "Each row isolates one knob:\n\n"
         "| Step | Input | Model | Macro F1 | Δ |\n|---|---|---|---:|---:|\n"
     )
-    if metrics.get("baseline_cnn"):
-        ablation += f"| Baseline | 128² | Custom CNN | {metrics['baseline_cnn']['macro_f1']:.4f} | — |\n"
-    if metrics.get("efficientnet_b0_128"):
-        ablation += (f"| (a-128) Architecture only | 128² | EfficientNet-B0 | "
-                     f"{metrics['efficientnet_b0_128']['macro_f1']:.4f} | "
-                     f"+{metrics['efficientnet_b0_128']['macro_f1'] - metrics['baseline_cnn']['macro_f1']:.4f} |\n")
-    if metrics.get("efficientnet_b0_a"):
-        ablation += (f"| (a) + Resolution | 224² | EfficientNet-B0 | "
-                     f"{metrics['efficientnet_b0_a']['macro_f1']:.4f} | "
-                     f"+{metrics['efficientnet_b0_a']['macro_f1'] - metrics['efficientnet_b0_128']['macro_f1']:.4f} |\n")
-    if metrics.get("efficientnet_b0_b"):
-        ablation += (f"| (b) + Mixup α=0.2 | 224² | EfficientNet-B0 | "
-                     f"{metrics['efficientnet_b0_b']['macro_f1']:.4f} | "
-                     f"+{metrics['efficientnet_b0_b']['macro_f1'] - metrics['efficientnet_b0_a']['macro_f1']:+.4f} |\n")
-    if metrics.get("efficientnet_b0_c_tta"):
-        ablation += (f"| (c) + SWA + TTA | 224² | EfficientNet-B0 | "
-                     f"**{metrics['efficientnet_b0_c_tta']['macro_f1']:.4f}** | "
-                     f"+{metrics['efficientnet_b0_c_tta']['macro_f1'] - metrics['efficientnet_b0_b']['macro_f1']:+.4f} |\n")
+
+    def _row(label, input_size, model_key, prev_key):
+        if model_key not in metrics:
+            return ""
+        f1 = metrics[model_key]["macro_f1"]
+        if prev_key is None:
+            return (f"| {label} | {input_size} | EfficientNet-B0 | {f1:.4f} | — |\n"
+                    if "EfficientNet" in label
+                    else f"| {label} | {input_size} | Custom CNN | {f1:.4f} | — |\n")
+        prev_f1 = metrics.get(prev_key, {}).get("macro_f1")
+        if prev_f1 is None:
+            return ""
+        delta = f1 - prev_f1
+        sign = "+" if delta >= 0 else ""
+        return (f"| {label} | {input_size} | EfficientNet-B0 | {f1:.4f} | "
+                f"{sign}{delta:.4f} |\n")
+
+    ablation += _row("Baseline", "128²", "baseline_cnn", None)
+    ablation += _row("(D-128) Architecture only", "128²",
+                     "efficientnet_b0_128", "baseline_cnn")
+    ablation += _row("(D-a) + Resolution", "224²",
+                     "efficientnet_b0_a", "efficientnet_b0_128")
+    ablation += _row("(D-b) + Mixup α=0.2", "224²",
+                     "efficientnet_b0_b", "efficientnet_b0_a")
+    ablation += _row("(D-c) + SWA", "224²",
+                     "efficientnet_b0_c", "efficientnet_b0_b")
+    ablation += _row("(D-c) + SWA + TTA", "224²",
+                     "efficientnet_b0_c_tta", "efficientnet_b0_c")
     ablation += (
-        "\n**Architecture explains ~95% of the gain** (custom CNN → EfficientNet-B0 "
+        "\n**Architecture explains ~95 % of the gain** (custom CNN → EfficientNet-B0 "
         "at the same 128² input is +7.9 pp). The 128 → 224 resolution upgrade adds "
-        "the next ~0.5 pp. Mixup, SWA, and TTA each move macro F1 by less than "
-        "the single-seed noise floor; we cannot attribute these small deltas with "
-        "statistical confidence in one training run per config.\n\n"
+        "the next ~0.5 pp. SWA on this single-seed run *hurt* macro F1; TTA recovered "
+        "it. We treat all sub-0.001 deltas as within single-seed noise and do not "
+        "attribute them to specific recipe components without multi-seed runs.\n\n"
     )
 
+    # ---------------- Section 16: artifact map ----------------
+    artifacts = (
+        "\n## 16. Where to find what\n\n"
+        "| Artifact | Path |\n|---|---|\n"
+        "| Per-day reports | `outputs/reports/01..10*.md`, `11_phase_e_refinement_summary.md` |\n"
+        "| Refined plan | `refine.md` (project root) |\n"
+        "| Headline figures | `outputs/figures/06_*.png` |\n"
+        "| Per-model figures | `outputs/figures/<model>_{training_curves,confusion_matrix}.png` |\n"
+        "| Grad-CAM panels | `outputs/figures/07_gradcam_<model>.png` |\n"
+        "| Trained models | `outputs/models/<model>.keras` (gitignored — re-train via notebooks) |\n"
+        "| pHash hashes | `outputs/splits/image_hashes.csv` (gitignored — regenerate via `python -m src.dedup`) |\n"
+        "| Clean splits | `outputs/splits/{train,val,test}_clean.csv` |\n"
+        "| Original splits | `outputs/splits/{train,val,test}.csv` |\n"
+        "| Submission-ready paper | `paper/main.tex` + `paper/references.bib` |\n"
+    )
+
+    # Final order: intro, preprocess, model sections (4-10),
+    # comparison (11), grad-cam (12), leakage (13), discussion (14),
+    # ablation (15), artifacts (16).
     body = (intro + preprocess + sec4 + sec5 + sec6 + sec7 + sec8 + sec9 + sec10
-            + comparison + gradcam + discussion + leakage + ablation)
+            + comparison + gradcam + leakage + discussion + ablation + artifacts)
     out = REPORTS_DIR / "00_final_report.md"
     out.write_text(body, encoding="utf-8")
     return out

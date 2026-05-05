@@ -353,7 +353,7 @@ contribute:
    medical-imaging transfer.
 
 **Single-seed caveat for the recipe ablation.** The (D-a) → (D-b) →
-(D-c) deltas are all $\leq$ 0.0005 macro-F1, which is within
+(D-c) deltas are all $\leq$ 0.0007 macro-F1, which is within
 single-seed run-to-run noise. We **cannot** attribute these small
 differences to Mixup, SWA, or TTA without multi-seed runs.
 
