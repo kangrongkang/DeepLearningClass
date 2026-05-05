@@ -309,7 +309,14 @@ def build_final_report() -> Path:
         "stratified by true class so the panel covers more than one severity level "
         "when possible.\n\n"
     )
+    # Only emit Grad-CAM panels for models that actually have one rendered.
+    # We never produced Grad-CAM for the EfficientNet variants (the baselines
+    # were the only models we ran the Day 7 panel on); skipping silently
+    # avoids "figure missing" noise in the report.
     for name in metrics.keys():
+        gradcam_path = PROJECT_ROOT / "outputs" / "figures" / f"07_gradcam_{name}.png"
+        if not gradcam_path.exists():
+            continue
         gradcam += _figure_md(f"outputs/figures/07_gradcam_{name}.png",
                               f"Grad-CAM {name}",
                               f"Grad-CAM heatmaps for {name} — original / heatmap / overlay per row")
