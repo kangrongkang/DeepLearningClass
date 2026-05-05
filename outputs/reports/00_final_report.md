@@ -64,7 +64,6 @@ Four conv blocks of `Conv → BatchNorm → ReLU → MaxPool` at 32 / 64 / 128 /
 - Macro precision / recall / F1: 0.9175 / 0.9150 / **0.9155**
 - Weighted F1: 0.9119
 - Test set size: 6,600
-- Epochs run: —, wall-clock: — s
 
 **Per-class scores:**
 
@@ -92,7 +91,6 @@ MobileNetV2 ImageNet backbone (`include_top=False`) with a `Rescaling(scale=2, o
 - Macro precision / recall / F1: 0.7520 / 0.7476 / **0.7459**
 - Weighted F1: 0.7404
 - Test set size: 6,600
-- Epochs run: —, wall-clock: — s
 
 **Per-class scores:**
 
@@ -120,7 +118,6 @@ VGG16 ImageNet backbone with `Rescaling(255)` then `vgg16.preprocess_input` appl
 - Macro precision / recall / F1: 0.7378 / 0.7313 / **0.7318**
 - Weighted F1: 0.7253
 - Test set size: 6,600
-- Epochs run: —, wall-clock: — s
 
 **Per-class scores:**
 
@@ -148,7 +145,7 @@ Reviewer-requested ablation that uses the **same 128×128 input** as the baselin
 - Macro precision / recall / F1: 0.9944 / 0.9945 / **0.9944**
 - Weighted F1: 0.9942
 - Test set size: 6,600
-- Epochs run: 15, wall-clock: 9460.18655872345 s
+- Epochs run: 15, wall-clock: 9,460 s
 
 **Per-class scores:**
 
@@ -176,7 +173,7 @@ Same architecture as D-128 but at the backbone's native 224×224 resolution. Ada
 - Macro precision / recall / F1: 0.9988 / 0.9989 / **0.9989**
 - Weighted F1: 0.9988
 - Test set size: 6,600
-- Epochs run: 15, wall-clock: 9168.634584188461 s
+- Epochs run: 15, wall-clock: 9,169 s
 
 **Per-class scores:**
 
@@ -204,7 +201,7 @@ Adds Mixup α=0.2 (one mix per batch, λ from `Beta(α,α)` reflected to [0.5, 1
 - Macro precision / recall / F1: 0.9991 / 0.9991 / **0.9991**
 - Weighted F1: 0.9991
 - Test set size: 6,600
-- Epochs run: 15, wall-clock: 9720.529437541962 s
+- Epochs run: 15, wall-clock: 9,721 s
 
 **Per-class scores:**
 
@@ -249,9 +246,9 @@ This is *worse* than D-b, suggesting SWA in this single-seed configuration did n
 | baseline_cnn          |     0.9124 |            0.9175 |         0.915  |     0.9155 |        0.9119 |          nan |            nan    |     6600 |
 | mobilenetv2           |     0.7441 |            0.752  |         0.7476 |     0.7459 |        0.7404 |          nan |            nan    |     6600 |
 | vgg16                 |     0.7273 |            0.7378 |         0.7313 |     0.7318 |        0.7253 |          nan |            nan    |     6600 |
-| efficientnet_b0_128   |     0.9942 |            0.9944 |         0.9945 |     0.9944 |        0.9942 |           15 |           9460.19 |     6600 |
-| efficientnet_b0_a     |     0.9988 |            0.9988 |         0.9989 |     0.9989 |        0.9988 |           15 |           9168.63 |     6600 |
-| efficientnet_b0_b     |     0.9991 |            0.9991 |         0.9991 |     0.9991 |        0.9991 |           15 |           9720.53 |     6600 |
+| efficientnet_b0_128   |     0.9942 |            0.9944 |         0.9945 |     0.9944 |        0.9942 |           15 |              9460 |     6600 |
+| efficientnet_b0_a     |     0.9988 |            0.9988 |         0.9989 |     0.9989 |        0.9988 |           15 |              9169 |     6600 |
+| efficientnet_b0_b     |     0.9991 |            0.9991 |         0.9991 |     0.9991 |        0.9991 |           15 |              9721 |     6600 |
 | efficientnet_b0_c     |     0.9985 |            0.9985 |         0.9986 |     0.9986 |        0.9985 |           15 |           9101.13 |     6600 |
 | efficientnet_b0_c_tta |     0.9992 |            0.9993 |         0.9993 |     0.9993 |        0.9992 |          nan |            nan    |     6600 |
 
@@ -300,11 +297,11 @@ Grad-CAM produces a class-discriminative localization map by weighting the activ
 ![Grad-CAM vgg16](../figures/07_gradcam_vgg16.png)
 
 *Figure — Grad-CAM heatmaps for vgg16 — original / heatmap / overlay per row.*
-
-(Grad-CAM panels were not rendered for the EfficientNet-B0 variants in
-this run; the same `src/gradcam.py` helper supports them and re-running
-the Day 7 notebook against the saved EfficientNet checkpoints would
-produce the corresponding panels.)
+_(figure missing: outputs/figures/07_gradcam_efficientnet_b0_128.png)_
+_(figure missing: outputs/figures/07_gradcam_efficientnet_b0_a.png)_
+_(figure missing: outputs/figures/07_gradcam_efficientnet_b0_b.png)_
+_(figure missing: outputs/figures/07_gradcam_efficientnet_b0_c.png)_
+_(figure missing: outputs/figures/07_gradcam_efficientnet_b0_c_tta.png)_
 
 ## 13. Phase A — Leakage Audit
 

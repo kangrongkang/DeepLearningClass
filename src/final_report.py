@@ -164,9 +164,16 @@ def build_final_report() -> Path:
                   f"{m['macro_precision']:.4f} / {m['macro_recall']:.4f} / "
                   f"**{m['macro_f1']:.4f}**\n"
                   f"- Weighted F1: {m['weighted_f1']:.4f}\n"
-                  f"- Test set size: {m['n_test']:,}\n"
-                  f"- Epochs run: {train_block.get('epochs_run', '—')}, "
-                  f"wall-clock: {train_block.get('elapsed_seconds', '—')} s\n")
+                  f"- Test set size: {m['n_test']:,}\n")
+        # Only print the training-runtime line when the metrics JSON actually
+        # has those fields. Legacy baseline metrics files don't carry epoch /
+        # wall-clock; rendering them as "—" is just noise.
+        ep = train_block.get("epochs_run")
+        wc = train_block.get("elapsed_seconds")
+        if ep is not None or wc is not None:
+            ep_str = str(ep) if ep is not None else "—"
+            wc_str = f"{wc:,.0f} s" if wc is not None else "—"
+            block += f"- Epochs run: {ep_str}, wall-clock: {wc_str}\n"
         block += "\n**Per-class scores:**\n\n| Class | Precision | Recall | F1 |\n|---|---:|---:|---:|\n"
         per = m["per_class"]
         for c, p, r, f in zip(per["labels"], per["precision"], per["recall"], per["f1"]):

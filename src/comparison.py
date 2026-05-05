@@ -55,6 +55,7 @@ def comparison_table(metrics: dict[str, dict]) -> pd.DataFrame:
     nan = float("nan")
     rows = []
     for name, m in metrics.items():
+        elapsed = m.get("training", {}).get("elapsed_seconds")
         rows.append({
             "model": name,
             "accuracy": round(m.get("accuracy", nan), 4),
@@ -63,7 +64,7 @@ def comparison_table(metrics: dict[str, dict]) -> pd.DataFrame:
             "macro_f1": round(m.get("macro_f1", nan), 4),
             "weighted_f1": round(m.get("weighted_f1", nan), 4),
             "epochs_run": m.get("training", {}).get("epochs_run"),
-            "elapsed_seconds": m.get("training", {}).get("elapsed_seconds"),
+            "elapsed_seconds": int(round(elapsed)) if elapsed is not None else None,
             "n_test": m.get("n_test"),
         })
     return pd.DataFrame(rows)
